@@ -30,7 +30,7 @@ public:
 
 
 }; // This memory needs to be allocated on the heap!
-
+//DONE
 
 class QueueNode
 {
@@ -57,6 +57,7 @@ public:
 
 
 };
+//DONE
 
 class Queue // WORK ON MONDAY
 {
@@ -86,3 +87,4 @@ public: // Member functions
 	void printQueue();
 	bool isEmpty();
 };
+//DONE

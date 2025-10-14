@@ -1,15 +1,4 @@
-﻿  classes.cpp
-  main.cpp
+﻿  main.cpp
   testFunctions.cpp
   Generating Code...
-classes.obj : error LNK2019: unresolved external symbol "public: __cdecl Data::~Data(void)" (??1Data@@QEAA@XZ) referenced in function "public: void * __cdecl Data::`scalar deleting destructor'(unsigned int)" (??_GData@@QEAAPEAXI@Z)
-classes.obj : error LNK2019: unresolved external symbol "public: int __cdecl Data::getCustomerNumber(void)" (?getCustomerNumber@Data@@QEAAHXZ) referenced in function "public: void __cdecl Queue::printQueue(void)" (?printQueue@Queue@@QEAAXXZ)
-classes.obj : error LNK2019: unresolved external symbol "public: int __cdecl Data::getServiceTime(void)" (?getServiceTime@Data@@QEAAHXZ) referenced in function "public: void __cdecl Queue::printQueue(void)" (?printQueue@Queue@@QEAAXXZ)
-classes.obj : error LNK2019: unresolved external symbol "public: int __cdecl Data::getTotalTime(void)" (?getTotalTime@Data@@QEAAHXZ) referenced in function "public: void __cdecl Queue::enqueue(int,int)" (?enqueue@Queue@@QEAAXHH@Z)
-classes.obj : error LNK2019: unresolved external symbol "public: void __cdecl Data::setTotalTime(int)" (?setTotalTime@Data@@QEAAXH@Z) referenced in function "public: void __cdecl Queue::enqueue(int,int)" (?enqueue@Queue@@QEAAXHH@Z)
-classes.obj : error LNK2019: unresolved external symbol "public: __cdecl QueueNode::QueueNode(class Data *)" (??0QueueNode@@QEAA@PEAVData@@@Z) referenced in function "public: void __cdecl Queue::enqueue(int,int)" (?enqueue@Queue@@QEAAXHH@Z)
-classes.obj : error LNK2019: unresolved external symbol "public: __cdecl QueueNode::~QueueNode(void)" (??1QueueNode@@QEAA@XZ) referenced in function "public: void * __cdecl QueueNode::`scalar deleting destructor'(unsigned int)" (??_GQueueNode@@QEAAPEAXI@Z)
-classes.obj : error LNK2019: unresolved external symbol "public: class Data * __cdecl QueueNode::getData(void)" (?getData@QueueNode@@QEAAPEAVData@@XZ) referenced in function "public: void __cdecl Queue::dequeue(void)" (?dequeue@Queue@@QEAAXXZ)
-classes.obj : error LNK2019: unresolved external symbol "public: class QueueNode * __cdecl QueueNode::getNext(void)" (?getNext@QueueNode@@QEAAPEAV1@XZ) referenced in function "public: void __cdecl Queue::dequeue(void)" (?dequeue@Queue@@QEAAXXZ)
-classes.obj : error LNK2019: unresolved external symbol "public: void __cdecl QueueNode::setNext(class QueueNode *)" (?setNext@QueueNode@@QEAAXPEAV1@@Z) referenced in function "public: void __cdecl Queue::enqueue(int,int)" (?enqueue@Queue@@QEAAXHH@Z)
-C:\Users\malpe\OneDrive\Desktop\CPTS122\Alperov_PA5\x64\Debug\Alperov_PA5.exe : fatal error LNK1120: 10 unresolved externals
+  Alperov_PA5.vcxproj -> C:\Users\malpe\OneDrive\Desktop\CPTS122\Alperov_PA5\x64\Debug\Alperov_PA5.exe
