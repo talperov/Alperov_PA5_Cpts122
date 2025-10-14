@@ -14,7 +14,7 @@ public:
 	
 	//Constructor Copy Constructor Deconstructor
 	Data(); 
-	Data(int customer, int service, int total); 
+	Data(int customer, int service); 
 	~Data(); 
 
 		//getters
@@ -66,4 +66,23 @@ private:
 		*pTail;
 
 public: // Member functions
+
+	//Constructor Copy Constructor Destructor
+	Queue();
+	~Queue();
+
+	//getters
+	QueueNode* getHead();
+	QueueNode* getTail();
+
+	//setters
+	void setHead(QueueNode* newHead);
+	void setTail(QueueNode* newTail);
+
+
+	//member functions
+	void enqueue(int customer, int service);
+	void dequeue();
+	void printQueue();
+	bool isEmpty();
 };
