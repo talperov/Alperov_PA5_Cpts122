@@ -8,20 +8,41 @@ to confirm what we make is fully complete and will be about 2 header files and 3
 #include "classes.h"
 #include "testFunctions.h"
 using std::cout;
+using std::cin;
 using std::endl;
 
 int main(void)
 {
+	auto pick = 0;
 
 	cout << "=================================================Grocery Store Simulator================================================" << endl;
-	system("pause");
-	system("cls");
-	Testing test;
-	test.TEST_enqueue_on_empty_queue();
-	test.TEST_enqueue_with_one_node_in_queue();
-	test.TEST_dequeue_with_queue_with_one_node();
+	do
+	{
+		cout << "Test out Indivual Functions or Select Simulation." << endl;
+		cout << "Select choice below. . ." << endl;
+		cout << "1. Run Test Cases" << endl;
+		cout << "2. Run Simulator" << endl;
+		cout << "3. Exit" << endl;
+		cout << "Select a choice: ";
+		cin >> pick;
+		system("cls");
+		switch (pick)
+			{
+			case 1:
+				Testing test;
+				test.TEST_RUN();
+				break;
 
+			case 2:
 
+			//MAIN FUNCTION
+				break;
 
-	return 0;
+			case 3: 
+				cout << "Farewell!" << endl;
+			}
+
+	} while (pick != 3);
+		return 0;
 }
+

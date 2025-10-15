@@ -23,7 +23,7 @@ Data::Data(int customer, int service)
 Data::~Data()
 {
 	//Destructor
-	cout << "Destructor Acitvated" << endl; //remember to delete this
+	//cout << "Destructor Acitvated" << endl; //remember to delete this
 }
 
 // Getters
@@ -81,7 +81,7 @@ QueueNode::QueueNode(Data* newData, QueueNode* newNext)
 QueueNode::~QueueNode()
 {
 	//Destructor
-	cout << "Destructor Activated." << endl; // remember to remove this
+	//cout << "Destructor Activated." << endl; // remember to remove this
 }
 
 Data* QueueNode::getData(void)
@@ -115,7 +115,7 @@ Queue::Queue()
 Queue::~Queue()
 {
 	//Destructor
-	cout << "Destructor Activated" << endl; // remember to remove this
+	//cout << "Destructor Activated" << endl; // remember to remove this
 }
 
 QueueNode* Queue::getHead()
@@ -145,7 +145,7 @@ bool Queue::isEmpty()
 
 void Queue::enqueue(int customer, int service)
 {
-	Data* newData = new Data(customer, service); // creating space
+	Data* newData = new Data(customer, service); // creating space malloc()
 
 	if (!isEmpty())
 	{
@@ -212,7 +212,6 @@ void Queue::printQueue()
 		pCur = pCur->getNext();
 	}
 }
-
 
 
 
