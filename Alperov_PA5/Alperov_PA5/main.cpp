@@ -14,6 +14,8 @@ using std::endl;
 int main(void)
 {
 	auto pick = 0;
+    Testing test;
+    Testing run;
 
 	cout << "=================================================Grocery Store Simulator================================================" << endl;
 	do
@@ -26,21 +28,27 @@ int main(void)
 		cout << "Select a choice: ";
 		cin >> pick;
 		system("cls");
-		switch (pick)
-			{
-			case 1:
-				Testing test;
-				test.TEST_RUN();
-				break;
+        switch (pick) 
+        {
+        case 1:
+            test.TEST_RUN();
+            break;
 
-			case 2:
+        case 2: {
+            int n;
+            cout << "Enter simulation length in minutes: ";
+            cin >> n;
+            run.simulation_day_length(n);
+            break;
+        }
 
-			//MAIN FUNCTION
-				break;
+        case 3:
+            cout << "Exiting program..." << endl;
+            break;
 
-			case 3: 
-				cout << "Farewell!" << endl;
-			}
+        default:
+            cout << "Invalid choice. Try again." << endl;
+        }
 
 	} while (pick != 3);
 		return 0;

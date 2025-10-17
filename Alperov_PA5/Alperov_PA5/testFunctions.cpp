@@ -1,5 +1,6 @@
 #include "testFunctions.h"
 using std::cout;
+using std::cin;
 using std::endl;
 
 void Testing::TEST_enqueue_on_empty_queue()
@@ -132,63 +133,153 @@ void Testing::TEST_dequeue_with_queue_with_two_nodes()
 //DONE
 
 
-void Testing::TEST_simulation_day_length()
+void Testing::simulation_day_length(int runTime)
 {
 	srand(time(NULL));
 
-	cout << "Test #5  Simulation Day Length" << endl;
-	Queue fiveNodeQueue;
+	cout << "Simulation Day Length" << endl;
 
-	int tempCustomer = 1, tempService = rand() % 24 + 1;
+	Queue expressQueue;
+	Queue normalQueue;
 
-	int tempCustomerTwo = 2, tempServiceTwo = rand() % 24 + 1;
+	int totalTime = 0;
+	int customerCounter = 0;
 
-	int tempCustomerThree = 3, tempServiceThree = rand() % 24 + 1;
+	int expressArrival = rand() % 5 + 1; // 1-5 minutes
+	int normalArrival = rand() % 6 + 3;  // 3-8 minutes
 
-	int tempCustomerFour = 4, tempServiceFour = rand() % 24 + 1;
-
-	int tempCustomerFive = 5, tempServiceFive = rand() % 24 + 1;
-
-	int totalTime = 0, runTime = 24 * 60;
-
-	fiveNodeQueue.enqueue(tempCustomer, tempService);
-	fiveNodeQueue.enqueue(tempCustomerTwo, tempServiceTwo);
-	fiveNodeQueue.enqueue(tempCustomerThree, tempServiceThree);
-	fiveNodeQueue.enqueue(tempCustomerFour, tempServiceFour);
-	fiveNodeQueue.enqueue(tempCustomerFive, tempServiceFive);
-
-
-	while (totalTime < runTime && !fiveNodeQueue.isEmpty())
+	while (totalTime < runTime)
 	{
-		Data* tempoCustomer = fiveNodeQueue.getHead()->getData();
-		
-		tempoCustomer->setServiceTime(tempoCustomer->getServiceTime() - 1);
-
-		if (tempoCustomer->getServiceTime() <= 0)
+		if (expressArrival <= 0)
 		{
-			cout << "Customer Number " << tempoCustomer->getCustomerNumber() << " finished in " << totalTime << " minutes" << endl;
-			fiveNodeQueue.dequeue();
+			customerCounter++;
+			int serviceTime = rand() % 5 + 1; // 1-5 minutes
+			expressQueue.enqueue(customerCounter, serviceTime);
+			cout << "Customer " << customerCounter << " enters EXPRESS queue at time " << totalTime << " minutes. Service time: " << serviceTime << endl;
+			expressArrival = rand() % 5 + 1;
 		}
+
+		if (normalArrival <= 0)
+		{
+			customerCounter++;
+			int serviceTime = rand() % 6 + 3; // 3-8 minutes
+			normalQueue.enqueue(customerCounter, serviceTime);
+			cout << "Customer " << customerCounter << " enters NORMAL queue at time " << totalTime << " minutes. Service time: " << serviceTime << endl;
+			normalArrival = rand() % 6 + 3;
+		}
+
+		if (!expressQueue.isEmpty())
+		{
+			Data* customer = expressQueue.getHead()->getData();
+			customer->setServiceTime(customer->getServiceTime() - 1);
+
+			if (customer->getServiceTime() <= 0)
+			{
+				cout << "Customer " << customer->getCustomerNumber() << " FINISHED in EXPRESS queue at time " << totalTime << " minutes. Total time: " << customer->getTotalTime() << " min." << endl;
+				expressQueue.dequeue();
+			}
+		}
+
+		if (!normalQueue.isEmpty())
+		{
+			Data* customer = normalQueue.getHead()->getData();
+			customer->setServiceTime(customer->getServiceTime() - 1);
+
+			if (customer->getServiceTime() <= 0)
+			{
+				cout << "Customer " << customer->getCustomerNumber() << " FINISHED in NORMAL queue at time " << totalTime << " minutes. Total time: " << customer->getTotalTime() << " min." << endl; 
+				normalQueue.dequeue();
+			}
+		}
+
 		if (totalTime % 10 == 0)
 		{
-			cout << "Time: " << totalTime << "minutes." << endl;
-			fiveNodeQueue.printQueue();
+			cout << "EXPRESS QUEUE at time " << totalTime << endl;
+			expressQueue.printQueue(); 
+			cout << "NORMAL QUEUE at time " << totalTime << endl;
+			normalQueue.printQueue();
 		}
-		totalTime++;
 
+		totalTime++;
+		expressArrival--;
+		normalArrival--;
 	}
 
-	if (fiveNodeQueue.isEmpty())
+	cout << "Simulation ended after " << runTime << " minutes." << endl;
+}
+
+
+void Testing::TEST_simulation_24_hour()
+{
+	srand(time(NULL));
+
+	Queue expressQueue;
+	Queue normalQueue;
+
+	int totalTime = 0;
+	int customerCounter = 0;
+
+	int expressArrival = rand() % 5 + 1; // 1-5 minutes
+	int normalArrival = rand() % 6 + 3;  // 3-8 minutes
+
+	int runTime = 24 * 60; // 24 hours
+
+	while (totalTime < runTime || !expressQueue.isEmpty() || !normalQueue.isEmpty())
 	{
-			cout << "Test  (SIMULATION DAY LENGTH) Passed Successfully" << endl;
+		if (expressArrival <= 0 && totalTime < runTime)
+		{
+			customerCounter++;
+			int serviceTime = rand() % 5 + 1;
+			expressQueue.enqueue(customerCounter, serviceTime);
+			expressArrival = rand() % 5 + 1;
+		}
+
+		if (normalArrival <= 0 && totalTime < runTime)
+		{
+			customerCounter++;
+			int serviceTime = rand() % 6 + 3;
+			normalQueue.enqueue(customerCounter, serviceTime);
+			normalArrival = rand() % 6 + 3;
+		}
+
+		if (!expressQueue.isEmpty())
+		{
+			Data* customer = expressQueue.getHead()->getData();
+			customer->setServiceTime(customer->getServiceTime() - 1);
+
+			if (customer->getServiceTime() <= 0)
+			{
+				expressQueue.dequeue();
+			}
+		}
+
+		if (!normalQueue.isEmpty())
+		{
+			Data* customer = normalQueue.getHead()->getData();
+			customer->setServiceTime(customer->getServiceTime() - 1);
+
+			if (customer->getServiceTime() <= 0)
+			{
+				normalQueue.dequeue();
+			}
+		}
+
+		totalTime++;
+		expressArrival--;
+		normalArrival--;
+	}
+
+	if (expressQueue.isEmpty() && normalQueue.isEmpty())
+	{
+		cout << "TEST #5 24-hour simulation test PASSED successfully!" << endl;
 	}
 	else
 	{
-		cout << "Test (SIMULATION DAY LENGTH) Failed Unsuccessfully" << endl;
+		cout << "TEST #5 24-hour simulation test FAILED." << endl;
 	}
-	cout << endl;
-	return;
 }
+
+
 
 void Testing::TEST_RUN()
 {
@@ -197,7 +288,7 @@ void Testing::TEST_RUN()
 	test.TEST_enqueue_with_one_node_in_queue();
 	test.TEST_dequeue_with_queue_with_one_node();
 	test.TEST_dequeue_with_queue_with_two_nodes();
-	test.TEST_simulation_day_length();
+	test.TEST_simulation_24_hour();
 }
 
 
